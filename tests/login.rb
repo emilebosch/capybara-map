@@ -1,6 +1,6 @@
 reset!
 
-visit '/'
+visit "/"
 
 a = LoginMap.all(page).first
 a.name.set "manager@hello.com"

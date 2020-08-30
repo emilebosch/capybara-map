@@ -1,4 +1,4 @@
-# Map
+# Capybara Map
 
 An attempt to bring a bit of structure in capybara testing, by synchronizing
 conventions on partials naming, css naming, and accessing models from the DOM.
@@ -6,9 +6,9 @@ conventions on partials naming, css naming, and accessing models from the DOM.
 This is handy when you have complicated dom object such as activity feeds that you need
 to have tested.
 
-Instead of doing complicated capybara stuff you can now just do.
+Instead of doing complicated capybara finder stuff you can now just do:
 
-```
+```ruby
 activity = AcitivtyDom.first
 comment = activity.comments.first
 commment.body.should "This is my fluffy cat."
@@ -17,7 +17,7 @@ comment.like!
 
 In this case the map for this looks like:
 
-```
+```ruby
 class ActivityDom < Map
   text    :name,         ".panel-heading strong a"
   widget  :like_button,  ".panel-heading .mod-like-button", LikeButtonWidget
@@ -32,7 +32,7 @@ end
 
 As you can see it embeds a couple of other maps, the like and the comment widget:
 
-```
+```ruby
 class CommentMap < Map
   text     :body,        "p"
   element  :manager,     ".label-primary"
@@ -40,9 +40,9 @@ class CommentMap < Map
 end
 ```
 
-and 
+and
 
-```
+```ruby
 class LikeButtonMap < Map
   text :count, ".count"
 
@@ -68,4 +68,3 @@ bundle exec ruby test.rb
 ```
 
 ## Mapping
-

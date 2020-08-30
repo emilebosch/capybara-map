@@ -1,5 +1,5 @@
 class LoginMap < Map
-  element :name,     "#user_email"
+  element :name, "#user_email"
   element :password, "#user_password"
 
   def login

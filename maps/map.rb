@@ -1,6 +1,6 @@
 class Map
   attr_accessor :elm
-  
+
   class << self
     attr_accessor :config
   end
@@ -18,7 +18,7 @@ class Map
   end
 
   def self.all(page)
-    page.all(self.css_name).map {|e| self.new(e)}
+    page.all(self.css_name).map { |e| self.new(e) }
   end
 
   def self.element(name, selector)
@@ -38,14 +38,14 @@ class Map
   def self.widget(name, selector, widget)
     self.register name
     define_method name do
-      widget.new(elm.find(selector)) 
+      widget.new(elm.find(selector))
     end
   end
-  
+
   def self.widgets(name, selector, widget)
     self.register name
     define_method name do
-       elm.all(selector).map { |e| widget.new(e) }
+      elm.all(selector).map { |e| widget.new(e) }
     end
   end
 
@@ -57,7 +57,7 @@ class Map
   def explain
     puts self.class.name
     x = {}
-    for a in  self.class.config
+    for a in self.class.config
       begin
         x[a] = send(a)
       rescue StandardError => e
@@ -66,5 +66,5 @@ class Map
     end
     pp x
     puts "-----"
-  end  
+  end
 end
